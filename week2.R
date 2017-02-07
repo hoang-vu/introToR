@@ -70,19 +70,15 @@ cars<-rbind(cars,new2)
 # cbind doesnt work because cars only has 2 variables.
 
 # Challenge 11
-#download.file("https://raw.githubusercontent.com/swcarpentry/r-novice-gapminder/gh-pages/_episodes_rmd/data/gapminder-FiveYearData.csv", destfile = "data/gapminder-FiveYearData.csv")
+download.file("https://raw.githubusercontent.com/swcarpentry/r-novice-gapminder/gh-pages/_episodes_rmd/data/gapminder-FiveYearData.csv", destfile = "data/gapminder-FiveYearData.csv")
 gapminder <- read.csv("https://raw.githubusercontent.com/swcarpentry/r-novice-gapminder/gh-pages/_episodes_rmd/data/gapminder-FiveYearData.csv")
 str(gapminder)
 length(gapminder)
 # Extract names of countries which have life expectancy below 4s before 1980 (with one line of code)
-levels(factor(subset(gapminder, (gapminder$lifeExp < 40 & gapminder$year <= 1980))$country))
+unique(gapminder[gapminder$year < 1980 & gapminder$lifeExp < 40,"country"])
 
 
 # Challenge 12
 test <- subset(gapminder, gapminder$continent == "Africa")
-tested_country <- levels(factor(test, levels = levels(factor(test$country))))
-test
-result <- diff(test$lifeExp) > 0
-result
-all(diff(test$lifeExp) > 0)
+
 
